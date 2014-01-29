@@ -7,16 +7,18 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DNF
+namespace DNF.Database
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class illegals
+    public partial class materials
     {
-        public int ID { get; set; }
-        public string key { get; set; }
-        public string value { get; set; }
-        public string replacement { get; set; }
+        public long Id { get; set; }
+        public long EventId { get; set; }
+        public string Nazwa { get; set; }
+        public double Cena { get; set; }
+    
+        public virtual events events { get; set; }
     }
 }

@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DNF
+namespace DNF.Database
 {
     using System;
     using System.Collections.Generic;
@@ -16,19 +16,21 @@ namespace DNF
     {
         public events()
         {
-            this.register = new HashSet<register>();
+            this.materials = new HashSet<materials>();
+            this.registers = new HashSet<registers>();
         }
     
-        public int Id { get; set; }
+        public long Id { get; set; }
         public string Nazwa { get; set; }
         public string Opis { get; set; }
         public System.DateTime Data { get; set; }
-        public int IloscMiejsc { get; set; }
-        public int IloscWolnych { get; set; }
+        public long IloscMiejsc { get; set; }
+        public long IloscWolnych { get; set; }
         public string Miejsce { get; set; }
-        public int Prowadzacy { get; set; }
+        public string Prowadzacy { get; set; }
     
-        public virtual ICollection<register> register { get; set; }
         public virtual users users { get; set; }
+        public virtual ICollection<materials> materials { get; set; }
+        public virtual ICollection<registers> registers { get; set; }
     }
 }

@@ -1,0 +1,311 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DnfModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="events">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nazwa" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Opis" Type="varchar" MaxLength="600" Nullable="false" />
+          <Property Name="Data" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="IloscMiejsc" Type="uint" Nullable="false" />
+          <Property Name="IloscWolnych" Type="uint" Nullable="false" />
+          <Property Name="Miejsce" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Prowadzacy" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="materials">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EventId" Type="uint" Nullable="false" />
+          <Property Name="Nazwa" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Cena" Type="double" Nullable="false" />
+        </EntityType>
+        <EntityType Name="registers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EventId" Type="uint" Nullable="false" />
+          <Property Name="User" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="Login" />
+          </Key>
+          <Property Name="Login" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Haslo" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Rola" Type="uint" Nullable="false" />
+          <Property Name="Wiek" Type="uint" Nullable="false" />
+        </EntityType>
+        <Association Name="events_ibfk_1">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="events" Type="Self.events" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="Login" />
+            </Principal>
+            <Dependent Role="events">
+              <PropertyRef Name="Prowadzacy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="materials_ibfk_1">
+          <End Role="events" Type="Self.events" Multiplicity="1" />
+          <End Role="materials" Type="Self.materials" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="events">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="materials">
+              <PropertyRef Name="EventId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="registers_ibfk_1">
+          <End Role="events" Type="Self.events" Multiplicity="1" />
+          <End Role="registers" Type="Self.registers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="events">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="registers">
+              <PropertyRef Name="EventId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="registers_ibfk_2">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="registers" Type="Self.registers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="Login" />
+            </Principal>
+            <Dependent Role="registers">
+              <PropertyRef Name="User" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DnfModelStoreContainer">
+          <EntitySet Name="events" EntityType="Self.events" Schema="dnf" store:Type="Tables" />
+          <EntitySet Name="materials" EntityType="Self.materials" Schema="dnf" store:Type="Tables" />
+          <EntitySet Name="registers" EntityType="Self.registers" Schema="dnf" store:Type="Tables" />
+          <EntitySet Name="users" EntityType="Self.users" Schema="dnf" store:Type="Tables" />
+          <AssociationSet Name="events_ibfk_1" Association="Self.events_ibfk_1">
+            <End Role="users" EntitySet="users" />
+            <End Role="events" EntitySet="events" />
+          </AssociationSet>
+          <AssociationSet Name="materials_ibfk_1" Association="Self.materials_ibfk_1">
+            <End Role="events" EntitySet="events" />
+            <End Role="materials" EntitySet="materials" />
+          </AssociationSet>
+          <AssociationSet Name="registers_ibfk_1" Association="Self.registers_ibfk_1">
+            <End Role="events" EntitySet="events" />
+            <End Role="registers" EntitySet="registers" />
+          </AssociationSet>
+          <AssociationSet Name="registers_ibfk_2" Association="Self.registers_ibfk_2">
+            <End Role="users" EntitySet="users" />
+            <End Role="registers" EntitySet="registers" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DnfModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="events">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nazwa" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Opis" Type="String" MaxLength="600" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Data" Type="DateTime" Nullable="false" />
+          <Property Name="IloscMiejsc" Type="Int64" Nullable="false" />
+          <Property Name="IloscWolnych" Type="Int64" Nullable="false" />
+          <Property Name="Miejsce" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Prowadzacy" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="users" Relationship="Self.events_ibfk_1" FromRole="events" ToRole="users" />
+          <NavigationProperty Name="materials" Relationship="Self.materials_ibfk_1" FromRole="events" ToRole="materials" />
+          <NavigationProperty Name="registers" Relationship="Self.registers_ibfk_1" FromRole="events" ToRole="registers" />
+        </EntityType>
+        <EntityType Name="materials">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EventId" Type="Int64" Nullable="false" />
+          <Property Name="Nazwa" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Cena" Type="Double" Nullable="false" />
+          <NavigationProperty Name="events" Relationship="Self.materials_ibfk_1" FromRole="materials" ToRole="events" />
+        </EntityType>
+        <EntityType Name="registers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EventId" Type="Int64" Nullable="false" />
+          <Property Name="User" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="events" Relationship="Self.registers_ibfk_1" FromRole="registers" ToRole="events" />
+          <NavigationProperty Name="users" Relationship="Self.registers_ibfk_2" FromRole="registers" ToRole="users" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="Login" />
+          </Key>
+          <Property Name="Login" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Haslo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Rola" Type="Int64" Nullable="false" />
+          <Property Name="Wiek" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="events" Relationship="Self.events_ibfk_1" FromRole="users" ToRole="events" />
+          <NavigationProperty Name="registers" Relationship="Self.registers_ibfk_2" FromRole="users" ToRole="registers" />
+        </EntityType>
+        <Association Name="events_ibfk_1">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="events" Type="Self.events" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="Login" />
+            </Principal>
+            <Dependent Role="events">
+              <PropertyRef Name="Prowadzacy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="materials_ibfk_1">
+          <End Role="events" Type="Self.events" Multiplicity="1" />
+          <End Role="materials" Type="Self.materials" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="events">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="materials">
+              <PropertyRef Name="EventId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="registers_ibfk_1">
+          <End Role="events" Type="Self.events" Multiplicity="1" />
+          <End Role="registers" Type="Self.registers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="events">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="registers">
+              <PropertyRef Name="EventId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="registers_ibfk_2">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="registers" Type="Self.registers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="Login" />
+            </Principal>
+            <Dependent Role="registers">
+              <PropertyRef Name="User" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DnfEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="events" EntityType="Self.events" />
+          <EntitySet Name="materials" EntityType="Self.materials" />
+          <EntitySet Name="registers" EntityType="Self.registers" />
+          <EntitySet Name="users" EntityType="Self.users" />
+          <AssociationSet Name="events_ibfk_1" Association="Self.events_ibfk_1">
+            <End Role="users" EntitySet="users" />
+            <End Role="events" EntitySet="events" />
+          </AssociationSet>
+          <AssociationSet Name="materials_ibfk_1" Association="Self.materials_ibfk_1">
+            <End Role="events" EntitySet="events" />
+            <End Role="materials" EntitySet="materials" />
+          </AssociationSet>
+          <AssociationSet Name="registers_ibfk_1" Association="Self.registers_ibfk_1">
+            <End Role="events" EntitySet="events" />
+            <End Role="registers" EntitySet="registers" />
+          </AssociationSet>
+          <AssociationSet Name="registers_ibfk_2" Association="Self.registers_ibfk_2">
+            <End Role="users" EntitySet="users" />
+            <End Role="registers" EntitySet="registers" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DnfModelStoreContainer" CdmEntityContainer="DnfEntities">
+          <EntitySetMapping Name="events">
+            <EntityTypeMapping TypeName="DnfModel.events">
+              <MappingFragment StoreEntitySet="events">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nazwa" ColumnName="Nazwa" />
+                <ScalarProperty Name="Opis" ColumnName="Opis" />
+                <ScalarProperty Name="Data" ColumnName="Data" />
+                <ScalarProperty Name="IloscMiejsc" ColumnName="IloscMiejsc" />
+                <ScalarProperty Name="IloscWolnych" ColumnName="IloscWolnych" />
+                <ScalarProperty Name="Miejsce" ColumnName="Miejsce" />
+                <ScalarProperty Name="Prowadzacy" ColumnName="Prowadzacy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="materials">
+            <EntityTypeMapping TypeName="DnfModel.materials">
+              <MappingFragment StoreEntitySet="materials">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="EventId" ColumnName="EventId" />
+                <ScalarProperty Name="Nazwa" ColumnName="Nazwa" />
+                <ScalarProperty Name="Cena" ColumnName="Cena" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="registers">
+            <EntityTypeMapping TypeName="DnfModel.registers">
+              <MappingFragment StoreEntitySet="registers">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="EventId" ColumnName="EventId" />
+                <ScalarProperty Name="User" ColumnName="User" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="DnfModel.users">
+              <MappingFragment StoreEntitySet="users">
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Haslo" ColumnName="Haslo" />
+                <ScalarProperty Name="Rola" ColumnName="Rola" />
+                <ScalarProperty Name="Wiek" ColumnName="Wiek" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

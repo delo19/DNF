@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DNF.Database;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,7 +27,7 @@ namespace DNF.Panele
 
         private void zaloguj(object sender, RoutedEventArgs e)
         {
-            using (var dc = new DNFEntities())
+            using (var dc = new DnfEntities())
             {
                 var user = (from us in dc.users where us.Login == loginTb.Text && us.Haslo == hasloTb.Password select us).ToList();
                 if (user != null && user.Count() > 0)

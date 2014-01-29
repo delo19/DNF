@@ -35,7 +35,6 @@
                         <Button Content="Wydarzenia" HorizontalAlignment="Left" Margin="0,60,0,0" VerticalAlignment="Top" Width="166" Click="DajWydarzenia"/>
                         <Button Content="Moje wydarzenia" HorizontalAlignment="Left" Margin="0,85,0,0" VerticalAlignment="Top" Width="166"/>
                         <Button Content="Profil" HorizontalAlignment="Left" VerticalAlignment="Top" Width="166" Margin="0,35,0,0"/>
-                        <Button Content="Wyszukiwarka wydarzen" HorizontalAlignment="Left" Margin="0,110,0,0" VerticalAlignment="Top" Width="166"/>
                     </Grid>
                 </Grid>
             </StackPanel>

@@ -7,16 +7,16 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DNF
+namespace DNF.Database
 {
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class DNFEntities : DbContext
+    public partial class DnfEntities : DbContext
     {
-        public DNFEntities()
-            : base("name=DNFEntities")
+        public DnfEntities()
+            : base("name=DnfEntities")
         {
         }
     
@@ -26,8 +26,8 @@ namespace DNF
         }
     
         public DbSet<events> events { get; set; }
-        public DbSet<illegals> illegals { get; set; }
-        public DbSet<register> register { get; set; }
+        public DbSet<materials> materials { get; set; }
+        public DbSet<registers> registers { get; set; }
         public DbSet<users> users { get; set; }
     }
 }

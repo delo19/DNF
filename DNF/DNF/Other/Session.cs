@@ -8,7 +8,7 @@ namespace DNF.Other
 {
     public static class Session
     {
-        public static DNF.users zalogowanyUzytkownik;
+        public static DNF.Database.users zalogowanyUzytkownik;
 
 
     }

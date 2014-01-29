@@ -7,18 +7,25 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DNF
+namespace DNF.Database
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class register
+    public partial class users
     {
-        public int Id { get; set; }
-        public int Event { get; set; }
-        public int UserId { get; set; }
+        public users()
+        {
+            this.events = new HashSet<events>();
+            this.registers = new HashSet<registers>();
+        }
     
-        public virtual events events { get; set; }
-        public virtual users users { get; set; }
+        public string Login { get; set; }
+        public string Haslo { get; set; }
+        public long Rola { get; set; }
+        public long Wiek { get; set; }
+    
+        public virtual ICollection<events> events { get; set; }
+        public virtual ICollection<registers> registers { get; set; }
     }
 }
