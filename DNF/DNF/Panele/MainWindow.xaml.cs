@@ -1,4 +1,5 @@
-﻿using DNF.Panele;
+﻿using DNF.Other;
+using DNF.Panele;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,7 +25,25 @@ namespace DNF
         public MainWindow()
         {
             InitializeComponent();
-            //this.Content = new Login();
+            Setup();
+        }
+
+        private void Setup()
+        {
+            zalogowanyTb.Text = Session.zalogowanyUzytkownik.Login;
+            switch (Session.zalogowanyUzytkownik.Rola)
+            {
+                case 0: typTb.Text = "Uczestnik"; break;
+                case 1: typTb.Text = "Dziekanat"; break;
+                case 2: typTb.Text = "Prowadzący"; break;
+                case 3: typTb.Text = "Administrator"; break;
+                default: typTb.Text = "Uczestnik"; break;
+            }
+        }
+
+        private void DajWydarzenia(object sender, RoutedEventArgs e)
+        {
+            content.Children.Clear();
             content.Children.Add(new ListaWydarzen());
         }
     }

@@ -32,6 +32,8 @@ namespace DNF.Panele
                 if (user != null && user.Count() > 0)
                 {
                     Other.Session.zalogowanyUzytkownik = user.First();
+                    (new MainWindow()).Show();
+                    this.Close();
 
                 }
                 else
