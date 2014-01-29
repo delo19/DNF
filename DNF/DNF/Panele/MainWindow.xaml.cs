@@ -39,6 +39,8 @@ namespace DNF
                 case 3: typTb.Text = "Administrator"; break;
                 default: typTb.Text = "Uczestnik"; break;
             }
+            content.Children.Clear();
+            content.Children.Add(new ListaWydarzen());
 
         }
 
@@ -46,6 +48,12 @@ namespace DNF
         {
             content.Children.Clear();
             content.Children.Add(new ListaWydarzen());
+        }
+
+        private void dodajWydarzenie(object sender, RoutedEventArgs e)
+        {
+            content.Children.Clear();
+            content.Children.Add(new DodajWydarzenie(false));
         }
     }
 }

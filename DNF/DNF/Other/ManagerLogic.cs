@@ -12,7 +12,7 @@ namespace DNF.Other
     {
         static UsersController myUsers = new UsersController();
         static EventsController myEvents = new EventsController();
-
+        static RegistersController myRegisters = new RegistersController();
 
 
         #region users
@@ -28,7 +28,7 @@ namespace DNF.Other
 
         public static events DajWydarzenie(int id)
         {
-            return myEvents.DajWydarzenie( id);
+            return myEvents.DajWydarzenie(id);
         }
 
         public static List<events> DajWydarzenia()
@@ -52,7 +52,35 @@ namespace DNF.Other
             return myEvents.DajMojeWydarzenia();
         }
 
+        public static int DodajWydarzenie(events ev)
+        {
+            return myEvents.DodajWydarzenie(ev);
+        }
+
+        public static int SkasujWydarzenie(events ev)
+        {
+            return myEvents.SkasujWydarzenie(ev);
+        }
+
+        public static int EdytujWydarzenie(long id, events ev)
+        {
+            return myEvents.EdytujWydarzenie(id,ev);
+        }
+
         #endregion events
+
+        #region registers
+
+        public static List<registers> DajRegisters()
+        {
+            return myRegisters.DajRegisters();
+        }
+        public static int Zarejestruj(registers reg)
+        {
+            return myRegisters.Zarejestruj(reg);
+        }
+
+        #endregion registers
 
     }
 }

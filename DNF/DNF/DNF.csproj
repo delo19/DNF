@@ -61,6 +61,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Controllers\EventsController.cs" />
+    <Compile Include="Controllers\RegistersController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Database\events.cs">
       <DependentUpon>Model.tt</DependentUpon>

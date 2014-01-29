@@ -14,10 +14,8 @@
                     <MenuItem Header="_Zamknij" Background="Black" Foreground="#FFE8DADA"/>
                 </MenuItem>
                 <MenuItem Header="Wydarzenia" Background="Black" Foreground="#FFE8DADA">
-                    <MenuItem Header="_Dodaj wydarzenie" Background="Black" Foreground="#FFE8DADA"/>
+                    <MenuItem Header="_Dodaj wydarzenie" Background="Black" Foreground="#FFE8DADA" Click="dodajWydarzenie"/>
                     <MenuItem Header="_Close" Background="Black" Foreground="#FFE8DADA"/>
-                    <MenuItem Header="_Wyloguj" Background="Black" Foreground="#FFE8DADA"/>
-                    <MenuItem Header="Zamknij" Background="Black" Foreground="#FFE8DADA"/>
                 </MenuItem>
             </Menu>
             <StackPanel>

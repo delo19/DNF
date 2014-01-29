@@ -10,20 +10,20 @@
             <TextBlock HorizontalAlignment="Left" Margin="80,116,0,0" TextWrapping="Wrap" Text="Opis" VerticalAlignment="Top"/>
             <TextBlock HorizontalAlignment="Left" Margin="79,82,0,0"  TextWrapping="Wrap" Text="Data" VerticalAlignment="Top"/>
             <TextBlock HorizontalAlignment="Left" Margin="80,354,0,0" TextWrapping="Wrap" Text="Miejsce" VerticalAlignment="Top"/>
-            <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Background="#FFA29B9B"><Run Language="pl-pl" Text="Dodaj wydarzenie"/></TextBlock>
+            <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Background="#FFA29B9B"><Run Language="pl-pl" Text="Szczegóły wydarzenia"/></TextBlock>
             <TextBlock HorizontalAlignment="Left" Margin="79,252,0,0" TextWrapping="Wrap" Text="Kategoria wiekowa" VerticalAlignment="Top"/>
             <TextBlock HorizontalAlignment="Left" Margin="80,306,0,0" TextWrapping="Wrap" Text="Ilosć miejsc" VerticalAlignment="Top"/>
             <TextBlock HorizontalAlignment="Left" Margin="368,405,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
             <Button Content="Zapisz" HorizontalAlignment="Left" Margin="477,443,0,0" VerticalAlignment="Top" Width="75"/>
-            <Button Name="zapiszBtn" Content="Zapisz" HorizontalAlignment="Left" Margin="477,443,0,0" VerticalAlignment="Top" Width="75"/>
+            <Button Name="zapiszBtn" Content="Zapisz" HorizontalAlignment="Left" Margin="477,443,0,0" VerticalAlignment="Top" Width="75" Click="zapiszBtn_Click"/>
             <Button Name="wypiszBtn" Content="Wypisz" HorizontalAlignment="Left" Margin="572,443,0,0" VerticalAlignment="Top" Width="75"/>
-            <DatePicker HorizontalAlignment="Left" Margin="296,82,0,0" VerticalAlignment="Top" Name="dataTb"/>
+            <DatePicker HorizontalAlignment="Left" Margin="296,82,0,0" VerticalAlignment="Top" Name="dataTb" IsEnabled="False" />
             <TextBlock HorizontalAlignment="Left" Margin="296,52,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="107" Name="nazwaTb">
             </TextBlock>
-            <RichTextBox HorizontalAlignment="Left" Height="66" Margin="296,122,0,0" VerticalAlignment="Top" Width="351" Name="opisTb">
+            <RichTextBox HorizontalAlignment="Left" Height="66" Margin="296,122,0,0" VerticalAlignment="Top" IsReadOnly="True" Width="351" Name="opisTb" >
                 <FlowDocument>
                     <Paragraph>
-                        <Run Text=""/>
+                        <Run Name="opisTbtext" Text=""/>
                     </Paragraph>
                 </FlowDocument>
             </RichTextBox>
@@ -32,6 +32,8 @@
             <TextBlock HorizontalAlignment="Left" Margin="296,354,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="107" Name="miejsceTb"></TextBlock>
             <Button x:Name="edytujBtn" Content="Edytuj" HorizontalAlignment="Left" Margin="10,84,0,0" VerticalAlignment="Top" Width="47" Click="edytujBtn_Click"/>
             <Button x:Name="usunBtn" Content="Usun" HorizontalAlignment="Left" Margin="10,121,0,0" VerticalAlignment="Top" Width="47" Click="usunBtn_Click"/>
+            <TextBlock HorizontalAlignment="Left" Margin="65,405,0,0" TextWrapping="Wrap" Text="Ilosć miejsc wolnych" VerticalAlignment="Top"/>
+            <TextBlock x:Name="iloscMiejscWolnychTb" HorizontalAlignment="Left" Margin="296,405,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="107"/>
         </Grid>
     </Grid>
 </UserControl>

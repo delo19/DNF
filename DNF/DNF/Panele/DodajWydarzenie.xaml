@@ -12,12 +12,12 @@
             <TextBlock HorizontalAlignment="Left" Margin="79,82,0,0" TextWrapping="Wrap" Text="Data" VerticalAlignment="Top"/>
             <TextBlock HorizontalAlignment="Left" Margin="80,354,0,0" TextWrapping="Wrap" Text="Miejsce" VerticalAlignment="Top"/>
             <TextBlock HorizontalAlignment="Left" Margin="80,206,0,0" TextWrapping="Wrap" Text="Tematyka" VerticalAlignment="Top"/>
-            <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Background="#FFA29B9B"><Run Language="pl-pl" Text="Dodaj wydarzenie"/></TextBlock>
+            <TextBlock  Name="flagatb" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Background="#FFA29B9B"><Run Language="pl-pl" Text="Dodaj wydarzenie"/></TextBlock>
             <TextBlock HorizontalAlignment="Left" Margin="79,252,0,0" TextWrapping="Wrap" Text="Kategoria wiekowa" VerticalAlignment="Top"/>
             <TextBlock HorizontalAlignment="Left" Margin="80,306,0,0" TextWrapping="Wrap" Text="Ilosć miejsc" VerticalAlignment="Top"/>
             <TextBlock HorizontalAlignment="Left" Margin="368,405,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
             <Button Content="Zapisz" HorizontalAlignment="Left" Margin="477,443,0,0" VerticalAlignment="Top" Width="75"/>
-            <Button Content="Zapisz" HorizontalAlignment="Left" Margin="477,443,0,0" VerticalAlignment="Top" Width="75"/>
+            <Button Content="Zapisz" HorizontalAlignment="Left" Margin="477,443,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
             <Button Content="Skasuj" HorizontalAlignment="Left" Margin="572,443,0,0" VerticalAlignment="Top" Width="75" IsEnabled="False"/>
             <DatePicker HorizontalAlignment="Left" Margin="296,82,0,0" VerticalAlignment="Top" Name="dataTb"/>
             <TextBox HorizontalAlignment="Left" Margin="296,52,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="107" Name="nazwaTb">

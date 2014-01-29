@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DNF.Database;
+using DNF.Other;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,6 +27,7 @@ namespace DNF.Panele
         public ZapiszNaWydarzenie()
         {
             InitializeComponent();
+            Setup();
         }
 
         public ZapiszNaWydarzenie(bool editMode)
@@ -33,12 +36,26 @@ namespace DNF.Panele
             this.editMode = editMode;
             if (editMode)//pokaz edit, ukryj zapisz
             {
-                
+                edytujBtn.Visibility = Visibility.Hidden;
+                usunBtn.Visibility = Visibility.Hidden;
             }
             else
             {
-
+                zapiszBtn.Visibility = Visibility.Hidden;
+                wypiszBtn.Visibility = Visibility.Hidden;
             }
+            Setup();
+        }
+
+        private void Setup()
+        {
+            nazwaTb.Text = Session.aktualneWydarzenie.Nazwa;
+            opisTbtext.Text = Session.aktualneWydarzenie.Opis;
+            dataTb.SelectedDate = Session.aktualneWydarzenie.Data;
+            iloscMiejscTb.Text = Session.aktualneWydarzenie.IloscMiejsc.ToString();
+            kategriaWiekowaTb.Text = Session.aktualneWydarzenie.KategoriaWiekowa.ToString();
+            miejsceTb.Text = Session.aktualneWydarzenie.Miejsce;
+            iloscMiejscWolnychTb.Text = Session.aktualneWydarzenie.IloscWolnych.ToString();
         }
 
         private void edytujBtn_Click(object sender, RoutedEventArgs e)
@@ -51,6 +68,45 @@ namespace DNF.Panele
 
         private void usunBtn_Click(object sender, RoutedEventArgs e)
         {
+
+            // Configure the message box to be displayed
+            string messageBoxText = "Czy na pewno chcesz wykonać akcję?";
+            string caption = "Potwierdzenie";
+            MessageBoxButton button = MessageBoxButton.YesNoCancel;
+            MessageBoxImage icon = MessageBoxImage.Warning;
+
+            // Display message box
+            MessageBoxResult result = MessageBox.Show(messageBoxText, caption, button, icon);
+
+            // Process message box results
+            switch (result)
+            {
+                case MessageBoxResult.Yes:
+                    ManagerLogic.SkasujWydarzenie(Session.aktualneWydarzenie);
+                    break;
+                case MessageBoxResult.No:
+                    // User pressed No button
+                    // ...
+                    break;
+                case MessageBoxResult.Cancel:
+                    // User pressed Cancel button
+                    // ...
+                    break;
+            }
+
+            
+        }
+
+        private void zapiszBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (Session.aktualneWydarzenie.IloscWolnych == 0)
+                MessageBox.Show("brak wolnych miejsc!", "Bląd");
+            registers reg = new registers();
+            reg.EventId = Session.aktualneWydarzenie.Id;
+            reg.User = Session.zalogowanyUzytkownik.Login;
+            ManagerLogic.Zarejestruj(reg);
+            Session.aktualneWydarzenie.IloscWolnych -= 1;
+            ManagerLogic.EdytujWydarzenie(Session.aktualneWydarzenie.Id, Session.aktualneWydarzenie);
 
         }
     }

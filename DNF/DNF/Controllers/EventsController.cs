@@ -55,6 +55,7 @@ namespace DNF.Controllers
         {
             using (var dc = new DnfEntities())
             {
+                ev.Prowadzacy = Session.zalogowanyUzytkownik.Login;
                 dc.events.Add(ev);
                 return dc.SaveChanges();
             }
@@ -64,12 +65,13 @@ namespace DNF.Controllers
         {
             using (var dc = new DnfEntities())
             {
-                dc.events.Remove(ev);
+                var wydarzenie = (from us in dc.events where us.Id == ev.Id select us).ToList().First();
+                dc.events.Remove(wydarzenie);
                 return dc.SaveChanges();
             }
         }
 
-        public int EdytujWydarzenie(int id, events ev)
+        public int EdytujWydarzenie(long id, events ev)
         {
             using (var dc = new DnfEntities())
             {
@@ -82,7 +84,7 @@ namespace DNF.Controllers
                 wydarzenie.Opis = ev.Opis;
                 wydarzenie.KategoriaWiekowa = ev.KategoriaWiekowa;
                 wydarzenie.Data = ev.Data;
-                dc.events.Add(ev);
+                //dc.events.Add(wydarzenie);
                 return dc.SaveChanges();
             }
         }
