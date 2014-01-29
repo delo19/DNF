@@ -60,6 +60,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controllers\EventsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Database\events.cs">
       <DependentUpon>Model.tt</DependentUpon>
@@ -90,12 +91,19 @@
     </Compile>
     <Compile Include="Other\ManagerLogic.cs" />
     <Compile Include="Other\Session.cs" />
+    <Compile Include="Panele\DodajWydarzenie.xaml.cs">
+      <DependentUpon>DodajWydarzenie.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Panele\ListaWydarzen.xaml.cs">
       <DependentUpon>ListaWydarzen.xaml</DependentUpon>
     </Compile>
     <Compile Include="Panele\Logowanie.xaml.cs">
       <DependentUpon>Logowanie.xaml</DependentUpon>
     </Compile>
+    <Page Include="Panele\DodajWydarzenie.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Panele\ListaWydarzen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -116,8 +124,15 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Panele\ZapiszNaWydarzenie.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Panele\ZapiszNaWydarzenie.xaml.cs">
+      <DependentUpon>ZapiszNaWydarzenie.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

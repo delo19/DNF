@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DNF.Database;
+using DNF.Other;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +22,33 @@ namespace DNF.Panele
     /// </summary>
     public partial class ListaWydarzen : UserControl
     {
+
         public ListaWydarzen()
         {
             InitializeComponent();
+            listaWydarzenGrid.ItemsSource = ManagerLogic.DajWydarzenia();
+
+        }
+
+        private void listaWydarzenGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Session.aktualneWydarzenie = listaWydarzenGrid.SelectedItem as events;
+
+            if (Session.zalogowanyUzytkownik.Rola == 0)//uzytkownik
+            {
+                var ob = this.Parent;
+                (this.Parent as Grid).Children.Clear();
+                (ob as Grid).Children.Add(new ZapiszNaWydarzenie(true));
+                return;
+            }
+            else//dziekanat lub prowadzacy lub admin
+            {
+                var ob = this.Parent;
+                (this.Parent as Grid).Children.Clear();
+                (ob as Grid).Children.Add(new ZapiszNaWydarzenie(false));
+                return;
+            }
+
         }
     }
 }

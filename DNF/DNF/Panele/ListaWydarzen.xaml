@@ -5,15 +5,16 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" >
     <Grid>
-        <DataGrid HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="473" Width="801">
+        <DataGrid Name="listaWydarzenGrid" AutoGenerateColumns="False" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="473" Width="801" Foreground="Black" Background="#FF7A7A7A" SelectionChanged="listaWydarzenGrid_SelectionChanged">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Id" />
-                <DataGridTextColumn Header="Nazwa" />
-                <DataGridTextColumn Header="Data" />
-                <DataGridTextColumn Header="Miejsce" />
-                <DataGridTextColumn Header="Tematyka" />
-                <DataGridTextColumn Header="Kategoria wiekowa" />
-                <DataGridTextColumn Header="Opis" />
+                <DataGridTextColumn Header="Id"  Binding="{Binding Id}" />
+                <DataGridTextColumn Header="Nazwa" Binding="{Binding Nazwa}"/>
+                <DataGridTextColumn Header="Data" Binding="{Binding Data}"/>
+                <DataGridTextColumn Header="Miejsce"  Binding="{Binding Miejsce}" />
+                <DataGridTextColumn Header="Ilosc miejsc" Binding="{Binding IloscWolnych}" />
+                <DataGridTextColumn Header="Kategoria wiekowa" Binding="{Binding KategoriaWiekowa}" />
+                <DataGridTextColumn Header="Opis" Binding="{Binding Opis}" />
+                <DataGridTextColumn Header="Prowadzacy" Binding="{Binding Prowadzacy}" />
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

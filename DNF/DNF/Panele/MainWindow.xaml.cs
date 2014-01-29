@@ -39,6 +39,7 @@ namespace DNF
                 case 3: typTb.Text = "Administrator"; break;
                 default: typTb.Text = "Uczestnik"; break;
             }
+
         }
 
         private void DajWydarzenia(object sender, RoutedEventArgs e)
