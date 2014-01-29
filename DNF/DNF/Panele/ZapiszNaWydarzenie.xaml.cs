@@ -85,12 +85,8 @@ namespace DNF.Panele
                     ManagerLogic.SkasujWydarzenie(Session.aktualneWydarzenie);
                     break;
                 case MessageBoxResult.No:
-                    // User pressed No button
-                    // ...
                     break;
                 case MessageBoxResult.Cancel:
-                    // User pressed Cancel button
-                    // ...
                     break;
             }
 
@@ -101,6 +97,9 @@ namespace DNF.Panele
         {
             if (Session.aktualneWydarzenie.IloscWolnych == 0)
                 MessageBox.Show("brak wolnych miejsc!", "Bląd");
+            if(Session.aktualneWydarzenie.KategoriaWiekowa> Session.zalogowanyUzytkownik.Wiek)
+                MessageBox.Show("Zla kategoria wiekowa!", "Bląd");
+
             registers reg = new registers();
             reg.EventId = Session.aktualneWydarzenie.Id;
             reg.User = Session.zalogowanyUzytkownik.Login;
