@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DNF.Database
+namespace Logic.Database
 {
     using System;
     using System.Collections.Generic;

@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using DNF.Other;
 
 namespace UnitTests
 {
@@ -7,8 +8,19 @@ namespace UnitTests
     public class UnitTest1
     {
         [TestMethod]
-        public void TestMethod1()
+        public void LogowanieTest()
         {
+            var myUsers= ManagerLogic.Zaloguj("elo", "elo");
+            Assert.AreEqual(myUsers.Count,1);
+
+        }
+
+        [TestMethod]
+        public void DajWydarzeniaTest()
+        {
+            var myUsers = ManagerLogic.Zaloguj("elo", "elo");
+            Assert.AreEqual(myUsers.Count, 1);
+
         }
     }
 }

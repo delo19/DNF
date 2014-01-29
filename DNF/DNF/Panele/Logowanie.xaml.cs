@@ -1,4 +1,5 @@
 ﻿using DNF.Database;
+using DNF.Other;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,9 +28,8 @@ namespace DNF.Panele
 
         private void zaloguj(object sender, RoutedEventArgs e)
         {
-            using (var dc = new DnfEntities())
-            {
-                var user = (from us in dc.users where us.Login == loginTb.Text && us.Haslo == hasloTb.Password select us).ToList();
+
+                var user = ManagerLogic.Zaloguj(loginTb.Text, hasloTb.Password); 
                 if (user != null && user.Count() > 0)
                 {
                     Other.Session.zalogowanyUzytkownik = user.First();
@@ -39,7 +39,7 @@ namespace DNF.Panele
                 }
                 else
                     MessageBox.Show("Dane logowania nieprawidlowe");
-            }
+            
         }
     }
 }
