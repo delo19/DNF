@@ -96,14 +96,20 @@ namespace DNF.Panele
         private void zapiszBtn_Click(object sender, RoutedEventArgs e)
         {
             if (Session.aktualneWydarzenie.IloscWolnych == 0)
+            {
                 MessageBox.Show("brak wolnych miejsc!", "Bląd");
-            if(Session.aktualneWydarzenie.KategoriaWiekowa> Session.zalogowanyUzytkownik.Wiek)
+                return;
+            }
+            if (Session.aktualneWydarzenie.KategoriaWiekowa > Session.zalogowanyUzytkownik.Wiek)
+            {
                 MessageBox.Show("Zla kategoria wiekowa!", "Bląd");
-
+                return;
+            }
             registers reg = new registers();
             reg.EventId = Session.aktualneWydarzenie.Id;
             reg.User = Session.zalogowanyUzytkownik.Login;
             ManagerLogic.Zarejestruj(reg);
+            MessageBox.Show("Zarejestrowano!!", "Sukces");
             Session.aktualneWydarzenie.IloscWolnych -= 1;
             ManagerLogic.EdytujWydarzenie(Session.aktualneWydarzenie.Id, Session.aktualneWydarzenie);
 

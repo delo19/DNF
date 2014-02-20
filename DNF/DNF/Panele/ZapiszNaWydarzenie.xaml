@@ -14,9 +14,8 @@
             <TextBlock HorizontalAlignment="Left" Margin="79,252,0,0" TextWrapping="Wrap" Text="Kategoria wiekowa" VerticalAlignment="Top"/>
             <TextBlock HorizontalAlignment="Left" Margin="80,306,0,0" TextWrapping="Wrap" Text="Ilosć miejsc" VerticalAlignment="Top"/>
             <TextBlock HorizontalAlignment="Left" Margin="368,405,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
-            <Button Content="Zapisz" HorizontalAlignment="Left" Margin="477,443,0,0" VerticalAlignment="Top" Width="75"/>
             <Button Name="zapiszBtn" Content="Zapisz" HorizontalAlignment="Left" Margin="477,443,0,0" VerticalAlignment="Top" Width="75" Click="zapiszBtn_Click"/>
-            <Button Name="wypiszBtn" Content="Wypisz" HorizontalAlignment="Left" Margin="572,443,0,0" VerticalAlignment="Top" Width="75"/>
+            <Button Name="wypiszBtn" Content="Wypisz" HorizontalAlignment="Left" Margin="572,443,0,0" VerticalAlignment="Top" Width="75" IsEnabled="False"/>
             <DatePicker HorizontalAlignment="Left" Margin="296,82,0,0" VerticalAlignment="Top" Name="dataTb" IsEnabled="False" />
             <TextBlock HorizontalAlignment="Left" Margin="296,52,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="107" Name="nazwaTb">
             </TextBlock>
